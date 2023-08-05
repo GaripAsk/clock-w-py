@@ -1,5 +1,5 @@
 # clock-w-py
-this is a project i working on for improve my desktop app development skills,
+this is a unfinished project i working on for improve my desktop app development skills,
 variables are half turkish, half english
 kinda bugy and alarm not finished
 feel free to leave a comment and advice 
