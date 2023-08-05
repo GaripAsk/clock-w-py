@@ -76,6 +76,7 @@ def day_new_window():
 
 
 def tag_new_window():
+    global tage
     tag_b.config(state=DISABLED)
     x = window.winfo_x() + 100
     y = window.winfo_y() + 385
@@ -91,8 +92,8 @@ def tag_new_window():
 
 
 def tag_confirm_b():
-    pass
-
+    taglabelvar = tage.get()
+    
 
 def alarm_window():
     pass

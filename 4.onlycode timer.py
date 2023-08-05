@@ -12,7 +12,7 @@ def starter():
         s = int(second_taker.get())
         m = int(minute_taker.get())
         h = int(hour_taker.get())
-        time_remaining = (h * 3600) + (m * 60) + s
+        time_remaining = (h * 3600) + (m * 60) + s + 1
     start()
 
 
