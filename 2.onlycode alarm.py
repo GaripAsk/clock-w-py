@@ -57,23 +57,39 @@ def rejects():
     forget_spinboxes()
     other_remembers()
     alarm_settings.place_forget()
+    resetter()
 
+def resetter():
+    tag_label_name.config(text="")
+    repeat_label_days.config(text="")
+    alarm_sound_name.config(text="")
 
 def day_new_window():
+    global daywindow
     days_b.config(state=DISABLED)
     x = window.winfo_x() + 100
     y = window.winfo_y() + 100
     daywindow = Toplevel(window)
-    daywindow.geometry(f"150x213+{x}+{y}")
+    daywindow.geometry(f"150x240+{x}+{y}")
     dayss = Frame(daywindow, bg="white", bd=10)
     dayss.pack()
+    vars.clear()
     for day in days:
         var = IntVar()
         vars.append(var)
         check_button = Checkbutton(dayss, text=day, variable=var)
         check_button.pack(anchor="w")
+    day_new_window_confirm = Button(daywindow, text="Confirm", command=day_window_confirm)
+    day_new_window_confirm.place(anchor="center", relx=0.5, rely=0.9)
     dayw_controller(daywindow)
 
+def day_window_confirm():
+    selected_days.clear()
+    for i, var in enumerate(vars):
+        if var.get():
+            selected_days.append(days[i])
+    #repeat_label_days.config(text=f"{selected_days}")
+    
 
 def tag_new_window():
     global tage
@@ -93,14 +109,14 @@ def tag_new_window():
 
 def tag_confirm_b():
     taglabelvar = tage.get()
-    
+    tag_label_name.config(text=f"{taglabelvar}")
 
 def alarm_window():
     pass
 
 
 def confirms():
-    pass
+    resetter()
 
 
 def dayw_controller(windows):
@@ -133,7 +149,7 @@ vcmd_h = window.register(lambda P: P.isdigit() and int(P) <= 24)
 vcmd_m = window.register(lambda P: P.isdigit() and int(P) <= 60)
 days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 vars = []
-
+selected_days = []
 spin_hour = Spinbox(window, from_=0, to=24, width=2, validate='key', validatecommand=(vcmd_h, '%P'), font=("Arial", 20))
 spin_hour.place(anchor="center", relx=0.25, rely=0.20)
 spin_hour.place_forget()
@@ -160,14 +176,20 @@ alarm_adder.place(anchor="center", relx=0.50, rely=0.85)
 confirm = Button(window, text="+", font=('Arial', 20, 'bold'), width=3, command=confirms)
 reject = Button(window, text="-", font=('Arial', 20, 'bold'), width=3, command=rejects)
 
-repeat_label = Label(alarm_settings, text="Repeat", font=("Arial", 16), width=20, anchor='w', height=2)
+repeat_label = Label(alarm_settings, text="Repeat:", font=("Arial", 10, "bold"), width=30, anchor='w', height=3)
+repeat_label_days = Label(alarm_settings, text="", font=("Arial", 8), width=40, anchor='w', height=1)
 repeat_label.place(anchor='center', relx=0.5, rely=0.2)
+repeat_label_days.place(anchor='center', relx=0.5, rely=0.3)
 
-tag_label = Label(alarm_settings, text="Tag", width=20, anchor='w', height=2, font=("Arial", 16))
+tag_label = Label(alarm_settings, text="Tag: ", font=("Arial", 10, "bold"), width=30, anchor='w', height=3)
+tag_label_name = Label(alarm_settings, text="", font=("Arial", 8), width=40, anchor='w', height=1)
 tag_label.place(anchor='center', relx=0.5, rely=0.5)
+tag_label_name.place(anchor='center', relx=0.5, rely=0.6)
 
-alarm_sound_label = Label(alarm_settings, text="Alarm sound", width=20, anchor='w', height=2, font=("Arial", 16))
+alarm_sound_label = Label(alarm_settings, text="Alarm sound: ", font=("Arial", 10, "bold"), width=30, anchor='w', height=3)
+alarm_sound_name = Label(alarm_settings, text="", font=("Arial", 8), width=40, anchor='w', height=1)
 alarm_sound_label.place(anchor='center', relx=0.5, rely=0.8)
+alarm_sound_name.place(anchor='center', relx=0.5, rely=0.9)
 
 days_b = Button(alarm_settings, text="+", height=1, width=3, font=("Arial", 16), command=day_new_window)
 days_b.place(anchor='center', relx=0.8, rely=0.2)
