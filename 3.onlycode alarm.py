@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter import filedialog
+import pygame.mixer
 import time
 
 
@@ -88,7 +90,7 @@ def day_window_confirm():
     for i, var in enumerate(vars):
         if var.get():
             selected_days.append(days[i])
-    #repeat_label_days.config(text=f"{selected_days}")
+    #repeat_label_days.config(text=f"{selected_days}") gonna add this later
     
 
 def tag_new_window():
@@ -112,8 +114,13 @@ def tag_confirm_b():
     tag_label_name.config(text=f"{taglabelvar}")
 
 def alarm_window():
-    pass
+    music_path = filedialog.askopenfilename(filetypes=[("MP3 Files", "*.mp3") ])
 
+    pygame.mixer.init()
+
+    pygame.mixer.music.load(music_path)
+
+    
 
 def confirms():
     resetter()
@@ -155,7 +162,7 @@ spin_hour.place(anchor="center", relx=0.25, rely=0.20)
 spin_hour.place_forget()
 
 spin_minute = Spinbox(window, from_=0, to=60, width=2, validate='key', validatecommand=(vcmd_m, '%P'),
-                      font=("Arial", 20))
+                        font=("Arial", 20))
 
 spin_minute.place(anchor="center", relx=0.50, rely=0.20)
 spin_minute.place_forget()
@@ -197,7 +204,7 @@ days_b.place(anchor='center', relx=0.8, rely=0.2)
 tag_b = Button(alarm_settings, text="+", height=1, width=3, font=("Arial", 16), command=tag_new_window)
 tag_b.place(anchor='center', relx=0.8, rely=0.5)
 
-alarm_sound_b = Button(alarm_settings, text="+", height=1, width=3, font=("Arial", 16))
+alarm_sound_b = Button(alarm_settings, text="+", height=1, width=3, font=("Arial", 16), command=alarm_window)
 alarm_sound_b.place(anchor='center', relx=0.8, rely=0.8)
 
 alarmslistbox = Listbox(window, bg='white', highlightcolor='white', highlightbackground='white', width=50, height=20)

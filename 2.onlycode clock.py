@@ -66,22 +66,12 @@ def clock_hourhand():
 
 window = Tk()
 timee = time.localtime()
-tabs = ttk.Notebook(window)
 window.resizable(False, False)
-tab1 = Frame(tabs)
-tab2 = Frame(tabs)
-tab3 = Frame(tabs)
-tab4 = Frame(tabs)
-tabs.add(tab1, text="Clock")
-tabs.add(tab2, text="Alarm")
-tabs.add(tab3, text="Stopwatch")
-tabs.add(tab4, text="Timer")
 width = 400
 height = 400
 window.geometry("400x680")
-canvas = Canvas(tab1, width=400, height=680)
+canvas = Canvas(window, width=400, height=680)
 canvas.pack()
-tabs.pack()
 
 for saat in range(13):
     aci = math.radians(saat * 30) 
@@ -137,7 +127,7 @@ second_id1 = canvas.create_line(core_x, core_y, uclu_x_s, uclu_y_s, width=2)
 minute_id2 = canvas.create_line(core_x, core_y, uclu_x_m, uclu_y_m, width=4)
 hour_id3 = canvas.create_line(core_x, core_y, uclu_x_h, uclu_y_h, width=6)
 
-saat = Label(tab1, font=('Arial', 20, 'bold'), width=20, height=7)
+saat = Label(window, font=('Arial', 20, 'bold'), width=20, height=7)
 saat.place(anchor="center", relx=0.5, rely=0.8)
 
 digital_clock()
