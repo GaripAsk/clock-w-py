@@ -85,6 +85,7 @@ def day_new_window():
     day_new_window_confirm.place(anchor="center", relx=0.5, rely=0.9)
     dayw_controller(daywindow)
 
+
 def day_window_confirm():
     selected_days.clear()
     for i, var in enumerate(vars):
@@ -157,6 +158,7 @@ vcmd_m = window.register(lambda P: P.isdigit() and int(P) <= 60)
 days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 vars = []
 selected_days = []
+
 spin_hour = Spinbox(window, from_=0, to=24, width=2, validate='key', validatecommand=(vcmd_h, '%P'), font=("Arial", 20))
 spin_hour.place(anchor="center", relx=0.25, rely=0.20)
 spin_hour.place_forget()
@@ -177,11 +179,11 @@ time_of_day = Label(window, font=('Arial', 20, 'bold'), width=20, height=7, bg='
 time_of_day.place(anchor="center", relx=0.50, rely=0.20)
 timeee()
 
-alarm_adder = Button(window, text="+", font=('Arial', 20, 'bold'), width=3, command=add_alarm)
+alarm_adder = Button(window, text="+", font=('Arial', 20, 'bold'), width=3, command=add_alarm, state=DISABLED)
 alarm_adder.place(anchor="center", relx=0.50, rely=0.85)
 
-confirm = Button(window, text="+", font=('Arial', 20, 'bold'), width=3, command=confirms)
-reject = Button(window, text="-", font=('Arial', 20, 'bold'), width=3, command=rejects)
+confirm = Button(window, text="+", font=('Arial', 20, 'bold'), width=3, command=confirms, state=DISABLED)
+reject = Button(window, text="-", font=('Arial', 20, 'bold'), width=3, command=rejects, state=DISABLED)
 
 repeat_label = Label(alarm_settings, text="Repeat:", font=("Arial", 10, "bold"), width=30, anchor='w', height=3)
 repeat_label_days = Label(alarm_settings, text="", font=("Arial", 8), width=40, anchor='w', height=1)
@@ -209,6 +211,7 @@ alarm_sound_b.place(anchor='center', relx=0.8, rely=0.8)
 
 alarmslistbox = Listbox(window, bg='white', highlightcolor='white', highlightbackground='white', width=50, height=20)
 alarmslistbox.place(anchor="center", relx=0.50, rely=0.55)
-
+wip = Label(window, font=("Arial", 50), text="WIP", bg="red", fg="white", width=20)
+wip.place(anchor="center", relx=0.5, rely=0.5)
 
 window.mainloop()
