@@ -5,4 +5,4 @@ kinda bugy and alarm not finished
 feel free to leave a comment and advice 
 also don't mind the changes i made, i am kinda new to github and vs code so yeah...
 
-Not: Variables are now fully english, alarm still now finished also timer kinda buggy
+Not: Variables are now fully english, alarm still not finished also timer kinda buggy
