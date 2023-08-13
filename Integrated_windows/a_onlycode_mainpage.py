@@ -6,6 +6,9 @@ import d_onlycode_stopwatch
 import e_onlycode_timer
 
 window = Tk()
+window.title("Clock app")
+clock_icon_window = PhotoImage(file="C:\\Users\\PC\\Desktop\\Pyhton çalışmaları\\projeler\\clock-w-py\\Integrated_windows\\clock.png")
+window.iconphoto(True, clock_icon_window)
 tabs = ttk.Notebook(window)
 tab1 = Frame(tabs)
 tab2 = Frame(tabs)
