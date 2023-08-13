@@ -102,6 +102,9 @@ def timerr(window):
     resett = Button(window, text="reset", command=reset, state=DISABLED)
     resett.place(anchor="center", rely=0.50, relx=0.25)
 
+    Timer_text = Label(window, font=("Arial", 20), width=12, anchor="center", text="Timer")
+    Timer_text.place(anchor="center", relx=0.5, rely=0.2)
+
 time_remaining = 0
 is_on = False
 timer_active = False
