@@ -13,19 +13,21 @@ def starter():
         m = int(minute_taker.get())
         h = int(hour_taker.get())
         time_remaining = (h * 3600) + (m * 60) + s + 1
+    forget()
     start()
+    timer()
 
+    """fixed the bug, still kinda messy thou"""
 
 def start():
-    global is_on, time_remaining, timer_active
-    forget()
+    global is_on, timer_active
     is_on = True
+    timer_active = True
     submit.config(text="pause", command=pause)
     resett.config(state=NORMAL)
     shower.place(anchor="center", relx=0.5, rely=0.33)
     update_time_display()
-    timer()
-
+    
 
 def update_time_display():
     shower.config(text=f"{time_remaining // 3600:02}:{time_remaining // 60 % 60:02}:{time_remaining % 60:02}")
@@ -55,9 +57,9 @@ def timer():
     if is_on and time_remaining > 0:
         time_remaining -= 1
         update_time_display()
-        window.after(1000, timer)
     else:
         timer_active = False
+    window.after(1000, timer)
 
 
 def forget():

@@ -10,27 +10,26 @@ def timerr(window):
 
     def starter():
         global time_remaining, timer_active
-        #if not timer_active:
-        s = int(second_taker.get())
-        m = int(minute_taker.get())
-        h = int(hour_taker.get())
-        time_remaining = (h * 3600) + (m * 60) + s + 1
+        if not timer_active:
+            s = int(second_taker.get())
+            m = int(minute_taker.get())
+            h = int(hour_taker.get())
+            time_remaining = (h * 3600) + (m * 60) + s + 1
+        forget()
         start()
+        timer()
 
-        """#if not timer_active: caused some problem with code, so i just gonna deactive it for now
-        it gonna cause some bugs if you spam click it or start/pause it"""
-
+        """fixed the bug, still kinda messy thou"""
 
     def start():
-        global is_on, time_remaining, timer_active
-        forget()
+        global is_on, timer_active
         is_on = True
+        timer_active = True
         submit.config(text="pause", command=pause)
         resett.config(state=NORMAL)
         shower.place(anchor="center", relx=0.5, rely=0.33)
         update_time_display()
-        timer()
-
+        
 
     def update_time_display():
         shower.config(text=f"{time_remaining // 3600:02}:{time_remaining // 60 % 60:02}:{time_remaining % 60:02}")
@@ -60,9 +59,9 @@ def timerr(window):
         if is_on and time_remaining > 0:
             time_remaining -= 1
             update_time_display()
-            window.after(1000, timer)
         else:
             timer_active = False
+        window.after(1000, timer)
 
 
     def forget():
@@ -105,4 +104,4 @@ def timerr(window):
 
 time_remaining = 0
 is_on = False
-timer_active = True
+timer_active = False
