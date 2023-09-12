@@ -8,7 +8,7 @@ def cleaner(event, entry):
 def starter1():
     timer()
     starter()
-
+    """fixed the reset bug"""
 def starter():
     global time_remaining, timer_active
     if not timer_active:

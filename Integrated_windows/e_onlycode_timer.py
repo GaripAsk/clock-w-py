@@ -6,7 +6,7 @@ def timerr(window):
     def cleaner(event, entry):
         if event.char.isdigit() and entry.get() == "00":
             entry.delete(0, END)
-
+    """fixed the reset bug"""
     def starter1():
         timer()
         starter()
