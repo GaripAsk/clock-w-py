@@ -7,6 +7,9 @@ def timerr(window):
         if event.char.isdigit() and entry.get() == "00":
             entry.delete(0, END)
 
+    def starter1():
+        timer()
+        starter()
 
     def starter():
         global time_remaining, timer_active
@@ -14,10 +17,9 @@ def timerr(window):
             s = int(second_taker.get())
             m = int(minute_taker.get())
             h = int(hour_taker.get())
-            time_remaining = (h * 3600) + (m * 60) + s + 1
+            time_remaining = (h * 3600) + (m * 60) + s
         forget()
         start()
-        timer()
 
         """fixed the bug, still kinda messy thou"""
 
@@ -96,7 +98,7 @@ def timerr(window):
     minute_taker.bind("<KeyPress>", lambda event: cleaner(event, minute_taker))
     second_taker.bind("<KeyPress>", lambda event: cleaner(event, second_taker))
 
-    submit = Button(window, text="start", command=starter)
+    submit = Button(window, text="start", command=starter1)
     submit.place(anchor="center", rely=0.50, relx=0.50)
 
     resett = Button(window, text="reset", command=reset, state=DISABLED)
